@@ -36,9 +36,9 @@
 <!--end of preloading-->
 <!--login form popup-->
 
-<div style="margin:50px; width:400px; display:flex; position: fixed; z-index:900">
+<div style="margin-left:40px;margin-top: 40px; width:400px; display:flex; position: fixed; z-index:900">
 {% if current_user.role == 'User' %}
-<a href="{{url_for('recent') }}">
+<a href="{{url_for('home') }}">
 	<img src="../static/assets_two/images/new/back-button.png" alt="back-button"  style="width:40px; height:40px;">
 </a>
 {% else %}

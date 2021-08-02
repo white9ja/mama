@@ -49,17 +49,25 @@
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" title="" /></a>-->
       </div>
+ {%  if current_user.role == 'User' %}
+  <div style="position: absolute;right:20px; top:30px;border-radius: 100%; text-align: center;justify-content: center;padding: 15px; width:60px; height: 60px; background-color:#5cd65c;align-items: right; color:white"><a  href="{{ url_for('recent') }}"><img src="/static/assets/img/new/dots-menu.png" style="width:25px;height:25px" ></a></div>
+   {% else %}
+   <div style="position: absolute;right:20px; top:30px;border-radius: 100%; text-align: center;justify-content: center;padding: 15px; width:60px; height: 60px; background-color:#5cd65c;align-items: right; color:white"><a href="{{ url_for('acco') }}"><img src="/static/assets/img/new/dots-menu.png" style="width:25px;height:25px" ></a></div>
+   
+       {% endif %}
+
+
 
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto" ></a></li>
           <li><a class="nav-link scrollto" ></a></li>
-          {%  if current_user.role == 'User' %}
+         <!--  {%  if current_user.role == 'User' %}
           <li><a class="nav-link scrollto" href="{{ url_for('recent') }}"> History</a></li>
           {% else %}
           <li><a class="nav-link scrollto" href="{{ url_for('acco') }}">Account</a></li>
           {% endif %}
-          <li><a class="nav-link scrollto" ></a></li>
+          <li><a class="nav-link scrollto" ></a></li> -->
        
 
           <li ><a class="nav-link scrollto active "><span> Holla! {{current_user.name}}</span> <span>  </span></i></a>
@@ -71,10 +79,11 @@
        
       </nav><!-- .navbar -->
 
-    </div>
   </header><!-- End Header -->
 
+    </div>
   <!-- ======= Hero Section ======= -->
+
   {% block content%}
 
   {%endblock%}
