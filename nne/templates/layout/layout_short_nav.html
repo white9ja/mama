@@ -22,14 +22,15 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Roboto:100,300,400,500,700|Philosopher:400,400i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="/static/assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="/static/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="/static/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="/static/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="/static/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="{{url_for('static',  filename='/assets/vendor/aos/aos.css')}}" rel="stylesheet">
+  <link href="{{url_for('static',  filename='/assets/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+  <link href="{{url_for('static',  filename='/assets/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
+  <link href="{{url_for('static',  filename='/assets/vendor/glightbox/css/glightbox.min.css')}}" rel="stylesheet">
+  <link href="{{url_for('static',  filename='/assets/vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="/static/assets/css/style.css" rel="stylesheet">
+  <link href="{{url_for ( 'static', filename ='/assets/css/style.css')}}" rel="stylesheet">
+
 
   <!-- =======================================================
   * Template Name: eStartup - v4.3.0
@@ -76,8 +77,8 @@
           <li class="dropdown"><a href="#"><span>Sign-up</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <!-- <li><a href="#">Drop Down 1</a></li> -->
-              <li class="dropdown" ><a href="{{ url_for('usignup') }}">Sign Up as User</a>
-                <li class="dropdown"><a href="{{ url_for('wsignup') }}">Sign Up as Care-giver</a>
+              <li  ><a href="{{ url_for('usignup') }}">Sign Up as User</a>
+                <li ><a href="{{ url_for('wsignup') }}">Sign Up as Care-giver</a>
                
               </li>
              
@@ -102,14 +103,14 @@
    
 
   <!-- Vendor JS Files -->
-  <script src="static/assets/vendor/aos/aos.js"></script>
-  <script src="static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="static/assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="static/assets/vendor/php-email-form/validate.js"></script>
-  <script src="static/assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="{{url_for('static', filename='/assets/vendor/aos/aos.js')}}"></script>
+  <script src="{{url_for('static', filename='/assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+  <script src="{{url_for('static', filename='/assets/vendor/glightbox/js/glightbox.min.js')}}"></script>
+  <script src="{{url_for('static', filename='/assets/vendor/php-email-form/validate.js')}}"></script>
+  <script src="{{url_for('static', filename='/assets/vendor/swiper/swiper-bundle.min.js')}}"></script>
 
   <!-- Template Main JS File -->
-  <script src="static/assets/js/main.js"></script>
+  <script src="{{url_for('static', filename='/assets/js/main.js')}}"></script>
 
 </body>
 
