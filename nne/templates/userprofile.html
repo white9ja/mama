@@ -1,0 +1,375 @@
+
+  {% extends 'layout/profile_nav.html'%}
+
+  {% block content %}
+  {% if current_user.role == 'User' %}
+
+<div class="col-md-9 col-sm-12 col-xs-12" style="background-color: transparent; margin-top: -90px">
+				<div class="form-style-1 user-pro" action="#">
+				{% with messages= get_flashed_messages(with_categories=true) %}
+                      {% if messages %}
+                         {% for category, message in messages %}
+
+                      <div class="alert alert border-1 shadow-sm" {{category}}"  style=" color:grey;background-color: #ffffff;border-radius:3px; display: flex; font-size: 15px; text-align:center;">
+                         <img src="static/assets/img/new/ok.jfif" alt="About" style="width:30px; height:40px; margin-right:20px;" data-aos="zoom-in" data-aos-delay="100">
+
+                           {{message}}
+                         </div>
+                      {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+					<form method="POST"  action="{{url_for('profile')}}"  enctype="multipart/form-data">
+					 {{ form.hidden_tag() }} 
+						<h4>01.Complete Registration</h4>
+						<div class="row">
+								<div class="col-md-6 form-it" style="margin-top:-15px">			
+		                       
+		                         {{ form.address.label(class="form-label", style="font-size:13px") }}
+		                              {% if form.address.errors %}
+		                              {{ form.address(class="form-control is-invalid") }}  
+		                                <ul class="errors">
+		                                  {% for error in form.address.errors %}
+		                                    <li>{{ error }}</li>
+		                                  {% endfor %}
+		                                </ul>
+		                                {% else %}
+		                                 {{ form.address(class="form-control") }} 
+		                              {% endif %}
+		                         
+
+		                          </div>
+								 <div class="col-md-6 form-it" style="margin-top:-15px">	
+									 {{ form.id_card.label (class="form-label", style="font-size:13px") }}
+									 {{ form.id_card (class="form-control", style="font-size:13px")}}
+									 {% if form.id_card.errors %}
+  										{% for error in form.id_card.errors %}
+                                        <span class="text-danger" style="color:red; font-size:14px">{{ error }}</span><br>
+                                       {% endfor %}
+									 {% endif %}
+								</div>
+								 
+						        <div class="col-md-12 form-it" style="padding: 20px">
+						         {{ form.submit( class="form-control", style="background-color:#5cd65c; color:#ffffff;border-image:5px; border:none;") }}
+								</div>
+						</div>
+					
+					</form>
+					
+				</div>
+			</div>
+
+
+
+
+
+
+{% elif current_user.pro_status == '1' %}
+
+<div class="col-md-9 col-sm-12 col-xs-12" style="background-color: transparent; margin-top: -90px">
+				<div class="form-style-1 user-pro" action="#">
+				{% with messages= get_flashed_messages(with_categories=true) %}
+                      {% if messages %}
+                         {% for category, message in messages %}
+
+                      <div class="alert alert border-1 shadow-sm" {{category}}"  style=" color:grey;background-color: #ffffff;border-radius:3px; display: flex; font-size: 15px; text-align:center;">
+                         <img src="static/assets/img/new/ok.jfif" alt="About" style="width:30px; height:40px; margin-right:20px;" data-aos="zoom-in" data-aos-delay="100">
+
+                           {{message}}
+                         </div>
+                      {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+		       <form method="POST"  action="{{url_for('profile')}}"  enctype="multipart/form-data">
+					 {{ form.hidden_tag() }} 
+						<h4>01. Update / Edit Profile details</h4>
+						<div class="row">
+							<div class="col-md-12 form-it">
+								  
+		                       {{ form.about.label( class="form-label", style="font-size:13px") }}
+		                              {% if form.about.errors %}
+		                              {{ form.about(class="form-control is-invalid") }}  
+		                                <ul class="errors", style="color:red;">
+		                                  {% for error in form.about.errors %}
+		                                    <li>{{ error }}</li>
+		                                  {% endfor %}
+		                                </ul>
+		                                {% else %}
+		                                 {{ form.about(class="form-control" , rows="5") }} 
+		                              {% endif %}   
+
+							</div>
+							
+						</div>
+						<div class="row">
+							<div class="col-md-6 form-it">
+							 {{ form.marrital_status.label(class="form-label", style="font-size:13px") }}
+		                              {% if form.marrital_status.errors %}
+		                              {{ form.marrital_status(class="form-control is-invalid") }}  
+		                                <ul class="errors", style="color:red;">
+		                                  {% for error in form.marrital_status.errors %}
+		                                    <li>{{ error }}</li>
+		                                  {% endfor %}
+		                                </ul>
+		                                {% else %}
+		                                 {{ form.marrital_status(class="form-control") }} 
+		                              {% endif %}
+							</div>
+							<div class="col-md-6 form-it">
+								 {{ form.children.label(class="form-label", style="font-size:13px") }}
+		                              {% if form.children.errors %}
+		                              {{ form.children(class="form-control is-invalid") }}  
+		                                <ul class="errors" , style="color:red;">
+		                                  {% for error in form.children.errors %}
+		                                    <li>{{ error }}</li>
+		                                  {% endfor %}
+		                                </ul>
+		                                {% else %}
+		                                 {{ form.children(class="form-control") }} 
+		                              {% endif %}
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6 form-it">
+								 {{ form.education.label(class="form-label", style="font-size:13px") }}
+		                              {% if form.education.errors %}
+		                              {{ form.education(class="form-control is-invalid") }}  
+		                                <ul class="errors", style="color:red;">
+		                                  {% for error in form.education.errors %}
+		                                    <li>{{ error }}</li>
+		                                  {% endfor %}
+		                                </ul>
+		                                {% else %}
+		                                 {{ form.education(class="form-control") }} 
+		                              {% endif %}
+							</div>
+							<div class="col-md-6 form-it">
+								 {{ form.religion.label(class="form-label", style="font-size:13px") }}
+		                              {% if form.religion.errors %}
+		                              {{ form.religion(class="form-control is-invalid") }}  
+		                                <ul class="errors", style="color:red;">
+		                                  {% for error in form.religion.errors %}
+		                                    <li>{{ error }}</li>
+		                                  {% endfor %}
+		                                </ul>
+		                                {% else %}
+		                                 {{ form.religion(class="form-control") }} 
+		                              {% endif %}
+							</div>
+					
+						</div>	
+		
+							<div class="row">
+								<div class="col-md-6 form-it">
+									
+									 {{ form.languages.label(class="form-label", style="font-size:13px") }}
+		                              {% if form.languages.errors %}
+		                              {{ form.languages(class="form-control is-invalid") }}  
+		                                <ul class="errors", style="color:red;">
+		                                  {% for error in form.languages.errors %}
+		                                    <li>{{ error }}</li>
+		                                  {% endfor %}
+		                                </ul>
+		                                {% else %}
+		                                 {{ form.languages(class="form-control") }} 
+		                              {% endif %}
+							
+								</div>
+								<div class="col-md-6 form-it">
+									 {{ form.location.label(class="form-label", style="font-size:13px") }}
+		                              {% if form.location.errors %}
+		                              {{ form.location(class="form-control is-invalid") }}  
+		                                <ul class="errors", style="color:red;">
+		                                  {% for error in form.location.errors %}
+		                                    <li>{{ error }}</li>
+		                                  {% endfor %}
+		                                </ul>
+		                                {% else %}
+		                                 {{ form.location(class="form-control") }} 
+		                              {% endif %}
+						     	</div>
+							</div>
+
+								<div class="col-md-6=12 form-it">
+									 {{ form.hobbies.label(class="form-label", style="font-size:13px") }}
+		                              {% if form.hobbies.errors %}
+		                              {{ form.hobbies(class="form-control is-invalid") }}  
+		                                <ul class="errors", style="color:red;">
+		                                  {% for error in form.hobbies.errors %}
+		                                    <li>{{ error }}</li>
+		                                  {% endfor %}
+		                                </ul>
+		                                {% else %}
+		                                 {{ form.hobbies(class="form-control") }} 
+		                              {% endif %}
+							    </div>
+						 <hr>
+						   <h4>02. UPLOAD DOCUMENT</h4>
+						<div class="row" style="margin-top:-15px">
+								
+						        <div class="col-md-12 form-it" style="padding: 20px">
+									<button  class="form-control" style="background-color:#5cd65c; color:#ffffff;border-image:5px; border:none; ">Submit</button>
+								</div>
+						</div>
+					
+					</form>
+					
+				</div>
+			</div>
+			{% else %}
+			<div class="col-md-9 col-sm-12 col-xs-12" style="background-color: transparent; margin-top: -90px">
+				<div class="form-style-1 user-pro" action="#">
+		       <form method="POST"  action="{{url_for('profile')}}"  enctype="multipart/form-data">
+					 {{ form.hidden_tag() }} 
+						<h4>01. Profile details</h4>
+						<div class="row">
+							<div class="col-md-12 form-it">
+								  
+		                       {{ form.about.label( class="form-label", style="font-size:13px") }}
+		                              {% if form.about.errors %}
+		                              {{ form.about(class="form-control is-invalid") }}  
+		                                <ul class="errors", style="color:red;">
+		                                  {% for error in form.about.errors %}
+		                                    <li>{{ error }}</li>
+		                                  {% endfor %}
+		                                </ul>
+		                                {% else %}
+		                                 {{ form.about(class="form-control" , rows="5") }} 
+		                              {% endif %}   
+
+							</div>
+							
+						</div>
+						<div class="row">
+							<div class="col-md-6 form-it">
+							 {{ form.marrital_status.label(class="form-label", style="font-size:13px") }}
+		                              {% if form.marrital_status.errors %}
+		                              {{ form.marrital_status(class="form-control is-invalid") }}  
+		                                <ul class="errors", style="color:red;">
+		                                  {% for error in form.marrital_status.errors %}
+		                                    <li>{{ error }}</li>
+		                                  {% endfor %}
+		                                </ul>
+		                                {% else %}
+		                                 {{ form.marrital_status(class="form-control") }} 
+		                              {% endif %}
+							</div>
+							<div class="col-md-6 form-it">
+								 {{ form.children.label(class="form-label", style="font-size:13px") }}
+		                              {% if form.children.errors %}
+		                              {{ form.children(class="form-control is-invalid") }}  
+		                                <ul class="errors" , style="color:red;">
+		                                  {% for error in form.children.errors %}
+		                                    <li>{{ error }}</li>
+		                                  {% endfor %}
+		                                </ul>
+		                                {% else %}
+		                                 {{ form.children(class="form-control") }} 
+		                              {% endif %}
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6 form-it">
+								 {{ form.education.label(class="form-label", style="font-size:13px") }}
+		                              {% if form.education.errors %}
+		                              {{ form.education(class="form-control is-invalid") }}  
+		                                <ul class="errors", style="color:red;">
+		                                  {% for error in form.education.errors %}
+		                                    <li>{{ error }}</li>
+		                                  {% endfor %}
+		                                </ul>
+		                                {% else %}
+		                                 {{ form.education(class="form-control") }} 
+		                              {% endif %}
+							</div>
+							<div class="col-md-6 form-it">
+								 {{ form.religion.label(class="form-label", style="font-size:13px") }}
+		                              {% if form.religion.errors %}
+		                              {{ form.religion(class="form-control is-invalid") }}  
+		                                <ul class="errors", style="color:red;">
+		                                  {% for error in form.religion.errors %}
+		                                    <li>{{ error }}</li>
+		                                  {% endfor %}
+		                                </ul>
+		                                {% else %}
+		                                 {{ form.religion(class="form-control") }} 
+		                              {% endif %}
+							</div>
+					
+						</div>	
+		
+							<div class="row">
+								<div class="col-md-6 form-it">
+									
+									 {{ form.languages.label(class="form-label", style="font-size:13px") }}
+		                              {% if form.languages.errors %}
+		                              {{ form.languages(class="form-control is-invalid") }}  
+		                                <ul class="errors", style="color:red;">
+		                                  {% for error in form.languages.errors %}
+		                                    <li>{{ error }}</li>
+		                                  {% endfor %}
+		                                </ul>
+		                                {% else %}
+		                                 {{ form.languages(class="form-control") }} 
+		                              {% endif %}
+							
+								</div>
+								<div class="col-md-6 form-it">
+									 {{ form.location.label(class="form-label", style="font-size:13px") }}
+		                              {% if form.location.errors %}
+		                              {{ form.location(class="form-control is-invalid") }}  
+		                                <ul class="errors", style="color:red;">
+		                                  {% for error in form.location.errors %}
+		                                    <li>{{ error }}</li>
+		                                  {% endfor %}
+		                                </ul>
+		                                {% else %}
+		                                 {{ form.location(class="form-control") }} 
+		                              {% endif %}
+						     	</div>
+							</div>
+
+								<div class="col-md-6=12 form-it">
+									 {{ form.hobbies.label(class="form-label", style="font-size:13px") }}
+		                              {% if form.hobbies.errors %}
+		                              {{ form.hobbies(class="form-control is-invalid") }}  
+		                                <ul class="errors", style="color:red;">
+		                                  {% for error in form.hobbies.errors %}
+		                                    <li>{{ error }}</li>
+		                                  {% endfor %}
+		                                </ul>
+		                                {% else %}
+		                                 {{ form.hobbies(class="form-control") }} 
+		                              {% endif %}
+							    </div>
+						 <hr>
+						   <h4>02. UPLOAD DOCUMENT</h4>
+						<div class="row" style="margin-top:-15px">
+								<div class="col-md-6 form-it">
+									 {{ form.image.label (class="form-label", style="font-size:13px") }}
+									 {{ form.image (class="form-control", style="font-size:13px")}}
+									 {% if form.image.errors %}
+  										{% for error in form.image.errors %}
+                                        <span class="text-danger" style="color:red; font-size:14px">{{ error }}</span><br>
+                                       {% endfor %}
+									 {% endif %}
+								</div>
+								<div class="col-md-6 form-it">
+									 {{ form.id_card.label (class="form-label", style="font-size:13px") }}
+									 {{ form.id_card (class="form-control", style="font-size:13px")}}
+									 {% if form.id_card.errors %}
+  										{% for error in form.id_card.errors %}
+                                        <span class="text-danger" style="color:red; font-size:14px">{{ error }}</span><br>
+                                       {% endfor %}
+									 {% endif %}
+								</div>
+						        <div class="col-md-12 form-it" style="padding: 20px">
+									<button  class="form-control" style="background-color:#5cd65c; color:#ffffff;border-image:5px; border:none; ">Submit</button>
+								</div>
+						</div>
+					
+					</form>
+					
+				</div>
+			</div>
+			{% endif %}
+	{% endblock  %}

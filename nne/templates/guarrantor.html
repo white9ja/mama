@@ -1,0 +1,146 @@
+{% extends 'layout/profile_nav.html'%}
+ 	
+    <!-- ======= Login Section ======= -->
+    {% block content %}
+
+			<div class="col-md-9 col-sm-12 col-xs-12" style="background-color: transparent; margin-top: -90px">
+				
+				<div class="form-style-1 user-pro" action="#">
+				  {% with messages= get_flashed_messages(with_categories=true) %}
+                      {% if messages %}
+                         {% for category, message in messages %}
+
+                      <div class="alert alert border-1 shadow-sm" {{category}}"  style=" color:grey;background-color: #ffffff;border-radius:3px; display: flex; font-size: 15px; text-align:center;">
+                         <img src="static/assets/img/new/ok.jfif" alt="About" style="width:30px; height:40px; margin-right:20px;" data-aos="zoom-in" data-aos-delay="100">
+
+                           {{message}}
+                         </div>
+                      {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+				<form method="POST"  action="{{url_for('grantt')}}"  enctype="multipart/form-data">
+					 {{ form.hidden_tag() }} 
+						<h4>01. Guarrantor One</h4>
+					
+						<div class="row">
+							<div class="col-md-6 form-it">
+								{{ form.guarrantor_one_name.label(class="form-label", style="font-size:13px") }}
+		                              {% if form.guarrantor_one_name.errors %}
+		                              {{ form.guarrantor_one_name(class="form-control is-invalid") }}  
+		                                <ul class="errors", style="color:red;">
+		                                  {% for error in form.guarrantor_one_name.errors %}
+		                                    <li>{{ error }}</li>
+		                                  {% endfor %}
+		                                </ul>
+		                                {% else %}
+		                                 {{ form.guarrantor_one_name(class="form-control") }} 
+		                              {% endif %}
+							</div>
+							<div class="col-md-6 form-it">
+								{{ form.guarrantor_one_phone.label(class="form-label", style="font-size:13px") }}
+		                              {% if form.guarrantor_one_phone.errors %}
+		                              {{ form.guarrantor_one_phone(class="form-control is-invalid") }}  
+		                                <ul class="errors", style="color:red;">
+		                                  {% for error in form.guarrantor_one_phone.errors %}
+		                                    <li>{{ error }}</li>
+		                                  {% endfor %}
+		                                </ul>
+		                                {% else %}
+		                                 {{ form.guarrantor_one_phone(class="form-control") }} 
+		                              {% endif %}
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6 form-it">
+								{{ form.guarrantor_one_address.label(class="form-label", style="font-size:13px") }}
+		                              {% if form.guarrantor_one_address.errors %}
+		                              {{ form.guarrantor_one_address(class="form-control is-invalid") }}  
+		                                <ul class="errors", style="color:red;">
+		                                  {% for error in form.guarrantor_one_address.errors %}
+		                                    <li>{{ error }}</li>
+		                                  {% endfor %}
+		                                </ul>
+		                                {% else %}
+		                                 {{ form.guarrantor_one_address(class="form-control") }} 
+		                              {% endif %}
+							</div>
+								<div class="col-md-6 form-it">
+									 {{ form.guarrantor_one_id_card.label (class="form-label", style="font-size:13px") }}
+									 {{ form.guarrantor_one_id_card (class="form-control", style="font-size:13px")}}
+									 {% if form.guarrantor_one_id_card.errors %}
+  									 {% for error in form.guarrantor_one_id_card.errors %}
+                                        <span class="text-danger" style="color:red; font-size:14px">{{ error }}</span><br>
+                                       {% endfor %}
+									 {% endif %}
+							</div>
+							
+					
+						</div>	
+		
+						 <hr>
+						   <h4>02. Guarrantor two</h4>
+						
+						<div class="row">
+							<div class="col-md-6 form-it">
+							{{ form.guarrantor_two_name.label(class="form-label", style="font-size:13px") }}
+		                              {% if form.guarrantor_two_name.errors %}
+		                              {{ form.guarrantor_two_name(class="form-control is-invalid") }}  
+		                                <ul class="errors", style="color:red;">
+		                                  {% for error in form.guarrantor_two_name.errors %}
+		                                    <li>{{ error }}</li>
+		                                  {% endfor %}
+		                                </ul>
+		                                {% else %}
+		                                 {{ form.guarrantor_two_name(class="form-control") }} 
+		                              {% endif %}
+								</div>
+								<div class="col-md-6 form-it">
+								{{ form.guarrantor_two_phone.label(class="form-label", style="font-size:13px") }}
+		                              {% if form.guarrantor_two_phone.errors %}
+		                              {{ form.guarrantor_one_phone(class="form-control is-invalid") }}  
+		                                <ul class="errors", style="color:red;">
+		                                  {% for error in form.guarrantor_two_phone.errors %}
+		                                    <li>{{ error }}</li>
+		                                  {% endfor %}
+		                                </ul>
+		                                {% else %}
+		                                 {{ form.guarrantor_two_phone(class="form-control") }} 
+		                              {% endif %}
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6 form-it">
+								{{ form.guarrantor_two_address.label(class="form-label", style="font-size:13px") }}
+		                              {% if form.guarrantor_two_address.errors %}
+		                              {{ form.guarrantor_two_address(class="form-control is-invalid") }}  
+		                                <ul class="errors", style="color:red;">
+		                                  {% for error in form.guarrantor_two_address.errors %}
+		                                    <li>{{ error }}</li>
+		                                  {% endfor %}
+		                                </ul>
+		                                {% else %}
+		                                 {{ form.guarrantor_two_address(class="form-control") }} 
+		                              {% endif %}
+							</div>
+								<div class="col-md-6 form-it">
+									 {{ form.guarrantor_two_id_card.label (class="form-label", style="font-size:13px") }}
+									 {{ form.guarrantor_two_id_card (class="form-control", style="font-size:13px")}}
+									 {% if form.guarrantor_two_id_card.errors %}
+  									 {% for error in form.guarrantor_two_id_card.errors %}
+                                        <span class="text-danger" style="color:red; font-size:14px">{{ error }}</span><br>
+                                       {% endfor %}
+									 {% endif %}
+								</div>
+
+
+							  <div class="col-md-12 form-it" style="padding: 20px">
+								{{ form.submit( class="form-control", style="background-color:#5cd65c; color:#ffffff;border-image:5px; border:none; ") }}
+								</div>
+					
+						</div>
+					
+					</form>
+					
+				</div>
+			</div>
+		{% endblock %}

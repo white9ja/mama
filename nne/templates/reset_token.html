@@ -1,0 +1,94 @@
+
+
+
+  <!-- ======= Hero Section ======= -->
+
+  {% extends 'layout/layout_login.html'%}
+
+  {% block content %}
+    <!-- ======= Login Section ======= -->
+    <section id="about-us" class="about-us padd-section">
+      <div class="container" data-aos="fade-up">
+        <div class="row justify-content-center">
+
+          <div class="col-md-5 col-lg-3">
+            <img src="static/assets/img/new/kiss.jfif" alt="About" data-aos="zoom-in" data-aos-delay="100">
+          </div>
+
+          <div class="col-md-7 col-lg-5">
+            
+            <div class="about-content" data-aos="fade-left" data-aos-delay="100">
+               {% with messages= get_flashed_messages(with_categories=true) %}
+                      {% if messages %}
+                         {% for category, message in messages %}
+                      <div class="alert alert border-1 shadow-sm" {{category}}"  style=" color:#000000; display: flex; font-size: 15px; text-align:center;">
+                         <img src="static/assets/img/new/ok.jfif" alt="About" style="width:30px; height:40px; margin-right:20px;" data-aos="zoom-in" data-aos-delay="100">
+                           {{message}}
+                         </div>
+                      {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+              <div class="card py-4 px-4  border-1 shadow-sm" >
+                   
+                <h4>Reset Password</h4>
+                <form method="post" action="" >
+                 {{ form.hidden_tag() }}
+                  
+           
+                    <div class="col-form-label">
+                       {{ form.password.label(class="form-label", style="font-size:13px") }}
+                              {% if form.password.errors %}
+                              {{ form.password(class="form-control is-invalid") }}  
+                                <ul class="errors">
+                                  {% for error in form.password.errors %}
+                                    <li>{{ error }}</li>
+                                  {% endfor %}
+                                </ul>
+                                {% else %}
+                                 {{ form.password(class="form-control") }} 
+                      {% endif %}                                         
+                    </div>
+
+                    <div class="col-form-label">
+                       {{ form.confirm_password.label(class="form-label", style="font-size:13px") }}
+                              {% if form.confirm_password.errors %}
+                              {{ form.confirm_password(class="form-control is-invalid") }}  
+                                <ul class="errors">
+                                  {% for error in form.confirm_password.errors %}
+                                    <li>{{ error }}</li>
+                                  {% endfor %}
+                                </ul>
+                                {% else %}
+                                 {{ form.confirm_password(class="form-control") }} 
+                      {% endif %}                                         
+                    </div>
+                       <div class="col-form-label" style="margin-top:10px">
+                      
+                           {{ form.submit( class="form-control", style="background-color:#66cc66; border:none; color:white; font-weight:200;font-size:15px;padding:5px") }}
+                     </div>
+                    
+               </form>
+       </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section><!-- End About Us Section -->
+    {% endblock %}
+    <!-- ======= Features Section ======= -->
+   
+
+  <!-- Vendor JS Files -->
+  <script src="static/assets/vendor/aos/aos.js"></script>
+  <script src="static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="static/assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="static/assets/vendor/php-email-form/validate.js"></script>
+  <script src="static/assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="static/assets/js/main.js"></script>
+
+</body>
+
+</html>

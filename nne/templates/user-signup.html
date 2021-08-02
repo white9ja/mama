@@ -1,0 +1,145 @@
+
+  <!-- ======= Hero Section ======= -->
+  {% extends 'layout/layout_short_nav.html' %}
+
+  <!-- ======= Login Section ======= -->
+  {% block content %}
+
+  <!-- ======= Hero Section ======= -->
+
+
+    <!-- ======= Login Section ======= -->
+    <section id="about-us" class="about-us padd-section">
+      <div class="container" data-aos="fade-up">
+        <div class="row justify-content-center">
+
+          <div class="col-md-5 col-lg-3">
+            <img src="static/assets/img/new/signn2.jfif" id="signImg" alt="About" data-aos="zoom-in" data-aos-delay="100">
+          </div>
+
+          <div class="col-md-7 col-lg-5">
+            <div class="about-content" data-aos="fade-left" data-aos-delay="100">
+                    {% with messages= get_flashed_messages(with_categories=true) %}
+                      {% if messages %}
+                         {% for category, message in messages %}
+                         <div class="alert alert - {{category}}">
+                           {{message}}
+                         </div>
+                      {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+              <div class="card py-4 px-4  border-1 shadow-sm">
+                   
+                <h4>User Registration</h4>
+                <form method="post" action="user-signup"  accept-charset="UTF-8">
+                {{ form.hidden_tag() }}
+                  
+                    <div class="col-form-label">
+                       
+                         {{ form.name.label(class="form-label", style="font-size:13px") }}
+                              {% if form.name.errors %}
+                              {{ form.name(class="form-control is-invalid") }}  
+                                <ul class="errors">
+                                  {% for error in form.name.errors %}
+                                    <li>{{ error }}</li>
+                                  {% endfor %}
+                                </ul>
+                                {% else %}
+                                 {{ form.name(class="form-control") }} 
+                              {% endif %}
+                         
+
+                    </div>
+                    <div class="col-form-label">
+
+                            {{ form.email.label(class="form-label", style="font-size:13px") }}
+                                {% if form.email.errors %}
+                                {{ form.email(class="form-control is-invalid") }}  
+                                  <ul class="errors">
+                                    {% for error in form.email.errors %}
+                                      <li>{{ error }}</li>
+                                    {% endfor %}
+                                  </ul>
+                                  {% else %}
+                                   {{ form.email(class="form-control") }} 
+                            {% endif %}                   
+                    </div>
+                    <div class="col-form-label">
+                       {{ form.password.label(class="form-label", style="font-size:13px") }}
+                              {% if form.password.errors %}
+                              {{ form.password(class="form-control is-invalid") }}  
+                                <ul class="errors">
+                                  {% for error in form.password.errors %}
+                                    <li>{{ error }}</li>
+                                  {% endfor %}
+                                </ul>
+                                {% else %}
+                                 {{ form.password(class="form-control") }} 
+                      {% endif %}                                         
+                    </div>
+                   
+                   <div class="row">
+                    <div class="col">
+                      {{ form.phone.label(class="form-label", style="font-size:13px") }}
+                              {% if form.phone.errors %}
+                              {{ form.phone(class="form-control is-invalid") }}  
+                                <ul class="errors">
+                                  {% for error in form.phone.errors %}
+                                    <li>{{ error }}</li>
+                                  {% endfor %}
+                                </ul>
+                                {% else %}
+                                 {{ form.phone(class="form-control") }} 
+                      {% endif %}          
+                    </div>
+                    <div class="col">
+                 
+                         
+                             {{ form.gender.label(class="form-label", style="font-size:13px") }}
+                              {% if form.gender.errors %}
+                              {{ form.gender(class="form-control is-invalid") }}  
+                                <ul class="errors">
+                                  {% for error in form.gender.errors %}
+                                    <li>{{ error }}</li>
+                                  {% endfor %}
+                                </ul>
+                                {% else %}
+                                 {{ form.gender(class="form-control", style="font-size:14px") }} 
+                             {% endif %}        
+                                <i class="fas fa-caret-down"></i>
+                   
+                    </div>
+                  </div>
+                   
+                    <div class="form-check form-switch" style="margin-left: 15px; margin-top:10px">
+
+                          {{ form. terms .label(class="form-label", style="font-size:13px") }}
+                              {% if form.terms == 0 %}
+                              {{ form.terms(class="form-control is-invalid") }}  
+                                <ul class="errors">
+                                  {% for error in form.terms.errors %}
+                                    <li>{{form.terms}}</li>
+                                  {% endfor %}
+                                </ul>
+                                {% else %}
+                                 {{ form.terms( class="form-check-input")  }} 
+                             {% endif %}  
+                       </div>
+                   
+                       <div class="col-form-label" style="margin-top:10px">
+                        {{ form.submit( class="form-control", style="background-color:#66cc66; border:none; color:white; font-weight:200;font-size:15px;padding:5px") }}
+                       
+                     </div>
+                    
+               </form>
+       </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section><!-- End About Us Section -->
+
+    <!-- ======= Features Section ======= -->
+   
+    {% endblock %}

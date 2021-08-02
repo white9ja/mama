@@ -1,0 +1,42 @@
+
+  {% extends 'layout/profile_nav.html'%}
+
+  {% block content %}
+
+
+
+<div class="col-md-9 col-sm-12 col-xs-12" style="background-color: transparent; margin-top: -90px">
+				<div class="form-style-1 user-pro" action="#">
+					<form method="POST"  action="{{url_for('avartar')}}"  enctype="multipart/form-data">
+					 {{ form.hidden_tag() }} 
+						
+						<div class="row">
+								
+		                    
+								 <div class="col-md-6 form-it" style="margin-top:-15px">	
+									 {{ form.image.label (class="form-label", style="font-size:13px") }}
+									 {{ form.image (class="form-control", style="font-size:13px")}}
+									 {% if form.image.errors %}
+  										{% for error in form.image.errors %}
+                                        <span class="text-danger" style="color:red; font-size:14px">{{ error }}</span><br>
+                                       {% endfor %}
+									 {% endif %}
+								</div>
+								 
+						        <div class="col-md-12 form-it" style="padding: 20px">
+									<button  class="form-control" style="background-color:#5cd65c; color:#ffffff;border-image:5px; border:none; ">Submit</button>
+								</div>
+						</div>
+					
+					</form>
+					
+				</div>
+			</div>
+
+
+
+
+
+
+
+	{% endblock  %}

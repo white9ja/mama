@@ -1,0 +1,231 @@
+
+
+  <!-- ======= Hero Section ======= -->
+{% extends 'layout/home_nav.html'%}
+
+    <!-- ======= Login Section ======= -->
+    {% block content %}
+
+    
+     <!--  <div class="overlay padd-section ">
+        <div class="container" data-aos="zoom-in">
+
+          <div class="row justify-content-center">
+            <div class="col-md-9 col-lg-6 ">
+              <form class="d-flex" method="POST" action="#">
+                <input type="email" class="form-control " placeholder="Care giver" name="email">
+                <button type="submit" class="btn btn-default"><i class="bi bi-location-arrow"></i>Search</button>
+              </form>   
+            </div>
+          </div>
+
+          <ul class="list-unstyled">
+            <li><a href="#"><i class="bi bi-facebook"></i></a></li>
+            <li><a href="#"><i class="bi bi-twitter"></i></a></li>
+            <li><a href="#"><i class="bi bi-instagram"></i></a></li>
+            <li><a href="#"><i class="bi bi-linkedin"></i></a></li> 
+          </ul>
+
+        </div>
+      </div> -->
+                  {% with messages= get_flashed_messages(with_categories=true) %}
+                      {% if messages %}
+                         {% for category, message in messages %}
+                      <div class="alert alert border-1 shadow-sm" {{category}}"  style=" color:#000000; display: flex; font-size: 15px; text-align:center;">
+                         <img src="static/assets/img/new/ok.jfif" alt="About" style="width:30px; height:40px; margin-right:20px;" data-aos="zoom-in" data-aos-delay="100">
+                           {{message}}
+                         </div>
+                      {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+
+
+       <section id="about-us" class="about-us padd-section">
+      {% if current_user.id_card == None %}
+          <div class="card col-sm-3 m-3 position-fixed bottom-0 end-0 p-3" role="alert" aria-live="assertive" aria-atomic="true" style="z-index: 6">
+              <div class="toast-header" style="justify-content: space-between; text-align: center; font-size: 14px">
+                  Kindly click the button below to complete your Registration
+              </div>
+              <div class="toast-body" style="font-size: 10px; padding: 15px 20px; align-self:center ">
+                 <a href="{{url_for('profile')}}" style="border-radius: 70px; border:1px solid #5cd65c; height:20px; padding:10px 20px; background-color: #5cd65c; color:#ffffff;">Complete Registration</a>
+             </div>
+         </div>
+     {% endif %}
+      <div class="container" data-aos="fade-up">
+        <div class="row justify-content-center" >
+
+          <div class="col-md-5 col-lg-3"  >
+            <img src="/static/assets/img/new/kiss.jfif" alt="About" data-aos="zoom-in" data-aos-delay="100">
+          </div>
+
+           
+                <div class=" col-sm-8 col-md-6 col-lg-4 mt-9" style="margin-top:10vh">
+                  <form class="d-flex" method="POST" action="{{url_for('home')}}">
+                     {{ form.hidden_tag() }} 
+                              {% if form.role.errors %}
+                              {{ form.role(class="form-control is-invalid") }}  
+                                <ul class="errors">
+                                  {% for error in form.role.errors %}
+                                    <li>{{ error }}</li>
+                                  {% endfor %}
+                                </ul>
+                                {% else %}
+                                 {{ form.role(class="form-control", style="margin-right:5px") }} 
+                      {% endif %}                                         
+                  
+                              {% if form.location.errors %}
+                              {{ form.location(class="form-control is-invalid") }}  
+                                <ul class="errors">
+                                  {% for error in form.location.errors %}
+                                    <li>{{ error }}</li>
+                                  {% endfor %}
+                                </ul>
+                                {% else %}
+                                 {{ form.location(class="form-control", style="margin-right:5px") }} 
+                      {% endif %}                                         
+                  
+                   {{ form.submit( class="btn btn-default", style="background-color:#5cd65c; border-radius:3px; align-self: center; align-items: center;") }}
+                   
+                  </form>   
+                    <ul class="list-unstyled" style="display: flex; justify-content:center;margin-top:20px;margin-bottom: 20px">
+                      <li style=" margin:20px;font-size:  20px "><a href="#"><i class="bi bi-facebook"></i></a></li>
+                      <li style=" margin:20px;font-size:  20px "><a href="#"><i class="bi bi-twitter"></i></a></li>
+                      <li style=" margin:20px;font-size:  20px "><a href="#"><i class="bi bi-instagram"></i></a></li>
+                      <li style=" margin:20px;font-size:  20px "><a href="#"><i class="bi bi-linkedin"></i></a></li> 
+                    </ul>
+                </div>
+         
+
+          
+
+        </div>
+          </div>
+
+       
+
+    </section>
+    <section id="pricing" class="padd-section text-center" style="margin-top: -18vh">
+    {% if givers %}
+   
+  <div class="container" data-aos="fade-up" style="margin-top: -30px">
+        <div class="section-title text-center" style="margin-top: -80px">
+
+          <h2 style="font-size: 30px">Search Result</h2>
+        </div>
+
+        <div class="row" data-aos="fade-up" data-aos-delay="100" >
+
+         {% if givers.query.count() > 0 %}
+                {% for giver in givers.items %}
+        <div class="col-md-6 col-lg-3" >
+            <div class="block-pricing">
+              <div class="table" style="padding: 0px; padding-top: 10px;">
+            
+             <img src="{{url_for('static', filename='user_uploads/' + giver.image)}}" class="border-1 shadow-sm" style="width:205px; height:200px;margin:0px;border-radius: 100px; object-fit: cover;object-position: 100% 0%;" alt="About" >
+
+                <ul class="list-unstyled">
+                  <li><b>{{giver.role}}</b>#{{giver.worker_id}} 
+
+                  <h6> {% for n in range(giver.stars|int) %} 
+                          <span class="review-star {% if n <= 3 %} review-star-active{% endif %}", style="color:#5cd65c;">★</span>
+                        {% endfor %}</h6>
+                        </li>
+                        
+                        
+                  </ul>
+                <div class="table_btn">
+                  <a href="{{url_for('detail', care_id = giver.id)}}" class="btn" style="margin-bottom: 20px"></i> View Profile</a>
+                </div>
+              </div>
+            </div>
+          </div >
+                {% endfor %}
+
+                  
+        </div>
+        <br>
+   {% for page_num in givers.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+                      {% if page_num %}
+                           {% if givers.page == page_num %}
+                            <a style="background-color: #5cd65c; color:#ffffff; padding: 12px; border-radius:3px; margin-top:0px" href="{{url_for('home', page= page_num )}}">{{page_num}}</a>
+                            {% else %}
+                            <a style="border:1px solid #5cd65c; padding: 12px; border-radius:3px; margin-top:0px" href="{{url_for('home', page= page_num )}}">{{page_num}}</a>
+                            {% endif %}
+                          {% else %}
+                         
+                        ...
+                      {% endif %}
+
+                  {% endfor %}
+               {% else %}
+                     <center><img src="/static/assets_two/images/new/loupe.png" style="object-fit:contain"  alt="no result">
+                     <div class="col-md-6 col-lg-3", style="padding: 10px; ">
+                 <h4 style="font-size: 14px; text-transform: initial;color:#5cd65c;font-weight: 300">Sorry there seem to be no available caregiver in this location. Kindly try the next closest location</h4></div>
+                     </center>
+                    {% endif %}
+
+       
+
+      </div>
+
+
+        {% else %}
+      <div class="container" data-aos="fade-up">
+        <div class="section-title text-center">
+
+          <h2 style="font-size: 30px">Recently Verified Care givers</h2>
+        </div>
+
+        <div class="row" data-aos="fade-up" data-aos-delay="100">
+
+         
+                {% for worker in workers.items %}
+        <div class="col-md-6 col-lg-3">
+            <div class="block-pricing">
+              <div class="table" style="padding: 0px; padding-top: 10px">
+            
+             <img src="{{url_for('static', filename='user_uploads/' + worker.image)}}" class="border-1 shadow-sm" style="width:205px; height:200px;margin:0px;border-radius: 100px; object-fit: cover;object-position: 100% 0%;" alt="About" >
+
+                <ul class="list-unstyled" >
+
+                  <li style="padding:5px"><b>{{worker.role}}</b>#{{worker.worker_id}}
+                    <h6 style="font-size:10px"><img src="/static/assets/img/new/locc.png" style="width: 20px; height:20px"><b style="font-size: 13px; font-weight: 400; "> {{worker.location}}</b> </h6>
+                  </li>
+
+                
+                </ul>
+                <div class="table_btn">
+                  <a href="{{url_for('detail', care_id = worker.id)}}" class="btn" style="margin-bottom: 20px"></i> View Profile</a>
+                </div>
+              </div>
+            </div>
+          </div >
+                {% endfor %}
+                  
+        </div>
+         <br>
+        {% for page_num in workers.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+                      {% if page_num %}
+                           {% if workers.page == page_num %}
+                            <a style="background-color: #5cd65c; color:#ffffff; padding: 12px; border-radius:3px; margin-top:0px" href="{{url_for('home', page= page_num )}}">{{page_num}}</a>
+                            {% else %}
+                            <a style="border:1px solid #5cd65c; padding: 12px; border-radius:3px; margin-top:0px" href="{{url_for('home', page= page_num )}}">{{page_num}}</a>
+                            {% endif %}
+                          {% else %}
+                         
+                        ...
+                      {% endif %}
+
+                  {% endfor %}
+        
+
+      </div>
+      {% endif %}
+    </section><!-- End Pricing Section -->
+
+   
+      
+    {% endblock %}
+
+    <!-- ======= Features Section ======= -->
+   
