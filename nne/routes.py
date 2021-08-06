@@ -46,9 +46,9 @@ def detail(care_id):
 @app.route('/account')
 @login_required
 def acco():
-  worker = Workers.query.filter_by(email = current_user.email)
+  workers = Workers.query.filter_by(email = current_user.email)
   image = url_for('static', filename='user_uploads/' + str(current_user.image))
-  return render_template('/account.html', title='Account', image=image, worker = worker)    
+  return render_template('/account.html', title='Account', image=image, workers = workers)    
 
 # This is the change role infor page route
 @app.route('/changeRoleInfo')

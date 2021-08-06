@@ -83,8 +83,8 @@
 							
 			<div class="col-md-8 col-sm-12 col-xs-12">
 				<div class="movie-single-ct main-content">
-										{% for workers in worker %}
-					<h1 class="bd-hd" style="color:#5cd65c">{{workers.role}}<span> #{{ workers.worker_id}}</span></h1>
+										{% for worker in workers %}
+					<h1 class="bd-hd" style="color:#5cd65c">{{worker.role}}<span> #{{ worker.worker_id}}</span></h1>
 					<div class="social-btn">
 						<a href="#" class="parent-btn"><i class="ion-heart"></i> Add to Favorite</a>
 						<div class="hover-bnt">
@@ -129,7 +129,7 @@
 							
 						    <div class="tab-content">
 						        <div id="overview" class="tab active">
-						        {% for workers in worker %}
+						        {% for worker in workers %}
 						            <div class="row">
 						            	<div class="col-md-8 col-sm-12 col-xs-12">
 						            	<div class="title-hd-sm">
@@ -138,7 +138,7 @@
 											</div>
 						            
 						            		<p>
-						            		{{workers.about}}
+						            		{{worker.about}}
 						            		</p>
 						            			<div class="title-hd-sm">
 												<h4>Marital Status</h4>
@@ -146,7 +146,7 @@
 											</div>
 											<!-- movie cast -->
 											<p>
-													{{workers.marrital_status}}							
+													{{worker.marrital_status}}							
 												</p>
 						            		<div class="title-hd-sm">
 												<h4>Number of children :</h4>
@@ -154,7 +154,7 @@
 											</div>
 											<!-- movie cast -->
 											<p>
-													{{workers.children}}							
+													{{worker.children}}							
 												</p>
 
 										   <div class="title-hd-sm">
@@ -163,7 +163,7 @@
 											</div>
 											<!-- movie cast -->
 											<p>
-													{{workers.education}}								
+													{{worker.education}}								
 												</p>
 											<div class="title-hd-sm">
 												<h4>State of Origin :</h4>
@@ -171,7 +171,7 @@
 											</div>
 											<!-- movie cast -->
 											<p>
-													{{workers.state_of_origin}} State							
+													{{worker.state_of_origin}} State							
 												</p>
 										 	<div class="title-hd-sm">
 												<h4>Languages :</h4>
@@ -179,7 +179,7 @@
 											</div>
 											<!-- movie cast -->
 											<p>
-													{{workers.languages}}								
+													{{worker.languages}}								
 												</p>
 										
 						            		<div class="title-hd-sm">
@@ -188,7 +188,7 @@
 											</div>
 											<!-- movie cast -->
 											<p>
-													{{workers.religion}}							
+													{{worker.religion}}							
 												</p>
 											
 											<div class="title-hd-sm">
@@ -197,7 +197,7 @@
 											</div>
 											<!-- movie cast -->
 											<p>
-													{{workers.hobbies}}							
+													{{worker.hobbies}}							
 												</p>
 											<!-- movie cast -->
 											

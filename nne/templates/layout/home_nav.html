@@ -51,7 +51,10 @@
       </div>
  {%  if current_user.role == 'User' %}
   <div style="position: absolute;right:20px; top:30px;border-radius: 100%; text-align: center;justify-content: center;padding: 15px; width:60px; height: 60px; background-color:#5cd65c;align-items: right; color:white"><a  href="{{ url_for('recent') }}"><img src="/static/assets/img/new/dots-menu.png" style="width:25px;height:25px" ></a></div>
-   {% else %}
+  
+    {%  elif current_user.id_card == None %}
+    <div style="position: absolute;right:20px; top:30px;border-radius: 100%; text-align: center;justify-content: center;padding: 15px; width:60px; height: 60px; background-color:#5cd65c;align-items: right; color:white"><a href="{{ url_for('profile') }}"><img src="/static/assets/img/new/dots-menu.png" style="width:25px;height:25px" ></a></div>
+    {% else %}
    <div style="position: absolute;right:20px; top:30px;border-radius: 100%; text-align: center;justify-content: center;padding: 15px; width:60px; height: 60px; background-color:#5cd65c;align-items: right; color:white"><a href="{{ url_for('acco') }}"><img src="/static/assets/img/new/dots-menu.png" style="width:25px;height:25px" ></a></div>
    
        {% endif %}

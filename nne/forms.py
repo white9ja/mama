@@ -21,6 +21,7 @@ class UserRegistrationForm(FlaskForm):
             ('Male', 'Male'),
             ('Female', 'Female')
         ])
+        
     terms = BooleanField ('I accept terms and condition',validators=[DataRequired(1)])
     submit = SubmitField ('Sign Up')
     def validate_phone(self, phone):

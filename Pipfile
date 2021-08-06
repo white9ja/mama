@@ -13,6 +13,7 @@ flask-login = "*"
 flask-mail = "*"
 gunicorn = "*"
 flask-sqlalchemy = "*"
+"flask.ext" = "*"
 
 [dev-packages]
 

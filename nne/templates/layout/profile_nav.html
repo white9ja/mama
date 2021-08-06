@@ -41,8 +41,16 @@
 <a href="{{url_for('home') }}">
 	<img src="../static/assets_two/images/new/back-button.png" alt="back-button"  style="width:40px; height:40px;">
 </a>
-{% else %}
+
+{% elif current_user.id_card != None %}
+
 <a href="{{url_for('acco') }}">
+	<img src="../static/assets_two/images/new/back-button.png" alt="back-button"  style="width:40px; height:40px;">
+</a>
+{% else %}
+
+
+<a href="{{url_for('home') }}">
 	<img src="../static/assets_two/images/new/back-button.png" alt="back-button"  style="width:40px; height:40px;">
 </a>
 {% endif %}
