@@ -15,7 +15,9 @@ from flask_mail import Message
 # this is the default welcome page route
 @app.route('/')
 def index():
-    return render_template('/index.html')
+  if current_user.is_authenticated:
+    return redirect(url_for('home'))
+  return render_template('/index.html')
 
 # This is the home page route
 @app.route('/home', methods=['GET', 'POST'])
@@ -135,7 +137,6 @@ def save_image(image):
 @login_required
 def profile():
   if current_user.role == 'User':
-
     form = UserCompleteRegForm()
     if form.validate_on_submit(): 
       if form.id_card.data:
@@ -217,25 +218,28 @@ def payme():
   image = url_for('static', filename='user_uploads/' + str(current_user.image))
   return render_template('/payment.html',title='Payment', image=image, form=form)
 
+
+
+#This is the route to login to the system
 @app.route('/login', methods=['GET', 'POST'])
 def login():
- # if current_user.is_authenticated:
- #    return redirect(url_for('home'))
-    form = LoginForm()
-    if form.validate_on_submit():
-      user = User.query.filter_by(email=form.email.data).first()
-      if user and bcrypt.check_password_hash(user.password, form.password.data):
-        login_user(user)
-        next_page = request.args.get('next')
-        return redirect (next_page) if next_page else redirect (url_for('home'))
-      else:
-           flash(f'Incorrect or wrong Email / Password Combination! ', 'danger')
-    return render_template('/login.html',title='Login', form=form)
+  if current_user.is_authenticated:
+    return redirect(url_for('home'))
+  form = LoginForm()
+  if form.validate_on_submit():
+    user = User.query.filter_by(email=form.email.data).first()
+    if user and bcrypt.check_password_hash(user.password, form.password.data):
+      login_user(user)
+      next_page = request.args.get('next')
+      return redirect (next_page) if next_page else redirect (url_for('home'))
+    else:
+         flash(f'Incorrect or wrong Email / Password Combination! ', 'danger')
+  return render_template('/login.html',title='Login', form=form)
+
 
 
 @app.route('/user-signup', methods=['GET', 'POST'])
 def usignup(): 
-
   if current_user.is_authenticated:
     return redirect(url_for('home'))
   form = UserRegistrationForm()
@@ -244,27 +248,28 @@ def usignup():
      user = User(name=form.name.data, email=form.email.data, password=hashed_password, phone= form.phone.data, gender=form.gender.data, terms=form.terms.data, role = 'User')
      db.session.add(user)
      db.session.commit()
-     flash(f'Account Created for {form.name.data} Successfully !', 'success')
-     return redirect ('login')
+     # flash(f'Account Created for {form.name.data} Successfully !', 'success')
+     login_user(user)
+     return redirect (url_for('home'))
      
   return render_template('user-signup.html' , title='User-Signup', form=form)
 
     
 @app.route('/caregiver-signup', methods=['GET', 'POST'])
 def wsignup():
+  if current_user.is_authenticated:
+    return redirect(url_for('home'))
+  form = CaregiverRegistrationForm()
+  if form.validate_on_submit():
+    hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+    user = User(name=form.name.data, email=form.email.data, password=hashed_password, phone= form.phone.data, gender=form.gender.data, terms=form.terms.data, role = form.role.data, date_of_birth=form.date_of_birth.data, state_of_origin= form.state_of_origin.data, address=form.address.data)
+    db.session.add(user)
+    db.session.commit()
+    # flash(f'Account Created for {form.name.data} Successfully !', 'success')
+    login_user(user)
+    return redirect (url_for('home'))
 
-  # if current_user.is_authenticated:
-  #   return redirect(url_for('home'))
-    form = CaregiverRegistrationForm()
-    if form.validate_on_submit():
-     hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-     user = User(name=form.name.data, email=form.email.data, password=hashed_password, phone= form.phone.data, gender=form.gender.data, terms=form.terms.data, role = form.role.data, date_of_birth=form.date_of_birth.data, state_of_origin= form.state_of_origin.data, address=form.address.data)
-     db.session.add(user)
-     db.session.commit()
-     flash(f'Account Created for {form.name.data} Successfully !', 'success')
-     return redirect ('login')
-
-    return render_template('caregiver-signup.html',title='Caregiver-Signup', form=form )
+  return render_template('caregiver-signup.html',title='Caregiver-Signup', form=form )
 
 
 def send_reset_email(user):
