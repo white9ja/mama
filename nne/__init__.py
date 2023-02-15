@@ -17,7 +17,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database/mama2.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 #Create database connection object
-# os.environ.get('EMAIL_USER')
+# os.environ.get('EMAIL_USER')   
 # os.environ.get('EMAIL_PASS')
 
 db = SQLAlchemy(app)
@@ -31,6 +31,13 @@ app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USERNAME'] = 'cellulantharry@gmail.com'
 app.config['MAIL_PASSWORD'] = 'advancegrace201'
 mail = Mail(app)
+
+
+from nne.models import Users, User, Workers, Guarrantor, Payment
+
+@login_manager.user_loader
+def load_user(user_id):
+	return User.query.get(int(user_id))
 
 
 from nne import routes 
