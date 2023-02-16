@@ -1,5 +1,6 @@
 import os
 from flask import Flask
+from flask_ngrok import run_with_ngrok
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
@@ -10,6 +11,7 @@ import datetime
 today = datetime.datetime.now()
 
 app = Flask(__name__)
+run_with_ngrok(app)
 
 # app.config['DEBUG'] = True
 app.config['SECRET_KEY'] = '9bb2e4c9f4e0d5036e40f575600cf8fa'
